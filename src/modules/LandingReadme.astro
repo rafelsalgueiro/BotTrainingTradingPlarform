@@ -6,7 +6,6 @@ import Confettis from '../components/ConfettiLauncher.astro';
 import AstroLogo from '../assets/astro-icon.svg?raw';
 import FlowbiteLogo from '../assets/flowbite-logo.svg?raw';
 
-import * as readMe from '../../README.md';
 import { SITE_TITLE } from '../app/constants.js';
 ---
 
@@ -59,11 +58,6 @@ import { SITE_TITLE } from '../app/constants.js';
 
 	<section class="flex justify-center w-full pb-24">
 		<div class="w-full format dark:format-invert">
-			<Code
-				lang={'powershell' /* Looks cool */}
-				code={`git clone \\
-https://github.com/themesberg/flowbite-astro-admin-dashboard.git`}
-			/>
 		</div>
 	</section>
 
@@ -73,7 +67,6 @@ https://github.com/themesberg/flowbite-astro-admin-dashboard.git`}
 				<!-- {readMe.getHeadings()[0].text} -->
 				{SITE_TITLE}
 			</h1>
-			<readMe.Content />
 		</div>
 	</article>
 </div>

@@ -1,0 +1,35 @@
+name: Check Astro Website
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Astro website
+        run: npm run build
+
+      - name: Run website checks
+        run: |
+          npm run start &
+          sleep 5 # wait for server to start, adjust as needed
+          npm run test:e2e # assuming you have end-to-end tests set up
