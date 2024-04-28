@@ -2,7 +2,7 @@ export const API_URL = `${import.meta.env.SITE}${import.meta.env.BASE_URL}api/`;
 
 export const REMOTE_ASSETS_BASE_URL = `https://flowbite-admin-dashboard.vercel.app`; //TODO
 
-export const SITE_TITLE = 'Trading Test Plarform';
+export const SITE_TITLE = 'TradeMate Tester';
 
 
 export const RANDOMIZE = Boolean(import.meta.env.RANDOMIZE) || true;
