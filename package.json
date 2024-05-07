@@ -41,8 +41,12 @@
 		"@faker-js/faker": "^7.6.0",
 		"apexcharts": "^3.37.2",
 		"astro": "^2.10.15",
+		"browserslist": "^4.23.0",
+		"caniuse-lite": "^1.0.30001616",
+		"dotenv": "^16.4.5",
 		"flowbite": "^2.1.1",
 		"flowbite-typography": "^1.0.3",
+		"react": "^18.3.1",
 		"shiki": "^0.14.1",
 		"shiki-themes": "^0.2.6",
 		"tailwind-scrollbar": "^3.0.0",
@@ -50,6 +54,7 @@
 	},
 	"devDependencies": {
 		"@types/eslint": "^8.21.1",
+		"@types/react": "^18.3.1",
 		"@typescript-eslint/eslint-plugin": "^5.54.1",
 		"@typescript-eslint/parser": "^5.54.1",
 		"astro-eslint-parser": "^0.11.0",
@@ -61,6 +66,7 @@
 		"eslint-plugin-astro": "^0.23.0",
 		"eslint-plugin-import": "^2.27.5",
 		"eslint-plugin-prettier": "^4.2.1",
-		"eslint-plugin-tsdoc": "^0.2.17"
+		"eslint-plugin-tsdoc": "^0.2.17",
+		"vite": "^5.2.11"
 	}
 }
