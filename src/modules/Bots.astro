@@ -1,5 +1,9 @@
 ---
 import { loadEnv } from 'vite';
+import IndicatorInputRSI from '../components/IndicatorInputRSI.astro';
+import IndicatorInputMACD from '../components/IndicatorInputMACD.astro';
+import IndicatorInputEMA from '../components/IndicatorInputEMA.astro';
+import IndicatorInputSMA from '../components/IndicatorInputSMA.astro';
 var dropdownHover = "Select currency pair";
 const API_key = loadEnv("", process.cwd(), '');
 const response = await fetch(`https://api.polygon.io/v3/reference/tickers?cursor=YWN0aXZlPXRydWUmYXA9QyUzQVNFS1pBUiU3QzMzMTc2YTg2ZjlhZGY2YThhMjE1MWY2M2Y5MjJkMjBkZTU0YzMwYTVjN2RhMGM5ZjgxYWJiNjQ3ZmU5ZWU3M2UmYXM9JmRhdGU9MjAyNC0wNS0wNyZsaW1pdD0xMDAwJm1hcmtldD1meCZvcmRlcj1hc2Mmc29ydD10aWNrZXI&apikey=${API_key.PUBLIC_API_KEY_Polygon}`);
@@ -15,14 +19,15 @@ currencyPairs = currencyPairs.results;
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                 </button>
-                <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 h-80">
+                
+                <div id="dropdownHover" class="z-10 hidden bg-white divide-y scrollbar-thin divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 max-h-80 overflow-y-auto">
                     <input type="text" id="searchInput" class="block w-full px-4 py-2 border-b border-gray-200 focus:outline-none focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:focus:border-blue-400" placeholder="Search..." />
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
                         {
                             currencyPairs.map((item: any) => {
                                 return (
                                     <li>
-                                        <p class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{item.ticker.replace('C:', '')}</p>
+                                        <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{item.ticker.replace('C:', '')}</p>
                                     </li>
                                 )
                                 
@@ -31,42 +36,86 @@ currencyPairs = currencyPairs.results;
                     </ul>
                 </div>
             </div>
-        <div class="flex flex-row justify-center gap-x-10 mb-5">
+        <div class="flex flex-row justify-center gap-x-10 mb-7">
             <div>
-                <h2 class="text-l font-bold text-gray-900 dark:text-gray-100">Size of the time window</h2>
+                <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Size of the time window</h2>
+                
+                <button id="dropdownButton" data-dropdown-toggle="dropdownTimeWindow" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items" type="button">Time window <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                </svg>
+                </button>
+
+                <div id="dropdownTimeWindow" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">second</a>
+                      </li>
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">minute</a>
+                      </li>
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">hour</a>
+                      </li>
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">day</a>
+                      </li>
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">week</a>
+                      </li>
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">month</a>
+                      </li>
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">quarter</a>
+                      </li>
+                      <li>
+                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">year</a>
+                      </li>
+                    </ul>
+                </div>
             </div>
             <div>
-                <h2 class="text-l font-bold text-gray-900 dark:text-gray-100">Size of timespan multiplier</h2>
+                <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Size of timespan multiplier</h2>
+                <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="90210" required />
             </div>
             <div>
-                <h2 class="text-l font-bold text-gray-900 dark:text-gray-100">Start of the aggregate time window</h2>
+                <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Start of the aggregate time window</h2>
+                
+                <div class="relative max-w-sm">
+                  <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                    </svg>
+                  </div>
+                  <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select from date">
+                </div>
             </div>
             <div>
-                <h2 class="text-l font-bold text-gray-900 dark:text-gray-100">End of the aggregate time window</h2>
+                <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">End of the aggregate time window</h2>
+                <div class="relative max-w-sm">
+  <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+    </svg>
+  </div>
+  <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select to date">
+</div>
             </div>
             <div>
-                <h2 class="text-l font-bold text-gray-900 dark:text-gray-100">Results are adjusted for splits</h2>
+                <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Results are adjusted for splits</h2>
+<div class="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+</div>
             </div>            
         </div>
         <div>
             <h2 class="justify-center mb-4 flex text-xl font-bold text-gray-900 dark:text-gray-100">Indicators</h2>
             <div class="flex flex-row justify-center gap-x-10 mb-5">
-                    <div class="flex items-center mb-4">
-                        <input id="sma-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="sma-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Simple Moving Average (SMA)</label>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <input id="ema-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="ema-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Exponential Moving Average (EMA)</label>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <input id="macd-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="macd-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Moving Average Convergence/Divergence (MACD)</label>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <input id="rsi-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="rsi-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Relative Strength Index (RSI)</label>
-                    </div>
+                    <IndicatorInputSMA id="sma" label="Simple Moving Average (SMA)" />
+                    <IndicatorInputEMA id="ema" label="Exponential Moving Average (EMA)" />
+                    <IndicatorInputMACD id="macd" label="Moving Average Convergence/Divergence (MACD)" />
+                    <IndicatorInputRSI id="rsi" label="Relative Strength Index (RSI)" />
             </div>
         </div>
         <div data-style="clean" class="flex flex-col mb-3 items-center">
@@ -98,7 +147,7 @@ currencyPairs = currencyPairs.results;
                     </div>
                     <input id="member_bot" class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="bot" aria-label="Enter your bot" placeholder="Enter your bot" type="file">
                 </div>
-                <button data-element="send" class="formkit-send min-w-max">
+                <button id="sendButton" data-element="send" class="formkit-send min-w-max">
                     <span class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send bot</span>
                 </button>
             </div>
@@ -106,8 +155,33 @@ currencyPairs = currencyPairs.results;
 </div>
 
 <script>
-    const searchInput = document.getElementById('searchInput');
+const searchInput = document.getElementById('searchInput');
 const listItems = document.querySelectorAll('#dropdownHover ul li');
+const sendButton = document.getElementById('sendButton');
+
+const listTimeWindow = document.querySelectorAll('#dropdownTimeWindow ul li');
+const dropdownButtonTimeWindow = document.getElementById('dropdownButton');
+
+listTimeWindow.forEach(function(item) {
+    item.addEventListener('click', function(event) {
+        const text = (event.target as HTMLElement)?.textContent || '';
+        
+        if (dropdownButtonTimeWindow) {
+            dropdownButtonTimeWindow.textContent = text;
+        }
+    });
+});
+
+const button = document.getElementById('dropdownHoverButton');
+listItems.forEach(function(item) {
+    item.addEventListener('click', function(event) {
+        const text = (event.target as HTMLElement)?.textContent || '';
+        
+        if (button) {
+            button.textContent = text;
+        }
+    });
+});
 
 if (searchInput) {
     searchInput.addEventListener('input', function(event) {
@@ -123,4 +197,8 @@ if (searchInput) {
         });
     });
 }
+
+sendButton?.addEventListener('click', function() {
+    alert('Bot sent');
+});
 </script>
