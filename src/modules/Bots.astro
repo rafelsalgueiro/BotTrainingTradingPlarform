@@ -15,14 +15,14 @@ currencyPairs = currencyPairs.results;
         <h1 class="flex justify-center text-4xl text-gray-900 dark:text-gray-100 font-bold mb-8">Add new bot</h1>
             <div class="flex flex-col items-center justify-center mb-7">
                 <h2 class="text-2xl font-bold pb-2 text-gray-900 dark:text-gray-100 ">Currency pair</h2>
-                <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">{dropdownHover} <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <button id="currencySelected" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">{dropdownHover} <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                 </button>
                 
                 <div id="dropdownHover" class="z-10 hidden bg-white divide-y scrollbar-thin divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 max-h-80 overflow-y-auto">
                     <input type="text" id="searchInput" class="block w-full px-4 py-2 border-b border-gray-200 focus:outline-none focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:focus:border-blue-400" placeholder="Search..." />
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="currencySelected">
                         {
                             currencyPairs.map((item: any) => {
                                 return (
@@ -40,7 +40,7 @@ currencyPairs = currencyPairs.results;
             <div>
                 <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Size of the time window</h2>
                 
-                <button id="dropdownButton" data-dropdown-toggle="dropdownTimeWindow" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items" type="button">Time window <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <button id="dropdownButtonTimeWindow" data-dropdown-toggle="dropdownTimeWindow" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items" type="button">Time window <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                 </svg>
                 </button>
@@ -76,7 +76,7 @@ currencyPairs = currencyPairs.results;
             </div>
             <div>
                 <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Size of timespan multiplier</h2>
-                <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="90210" required />
+                <input type="number" id="timestampMultiplier" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="90210" required />
             </div>
             <div>
                 <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Start of the aggregate time window</h2>
@@ -87,7 +87,7 @@ currencyPairs = currencyPairs.results;
                       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                     </svg>
                   </div>
-                  <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select from date">
+                  <input datepicker id="initDate" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select from date">
                 </div>
             </div>
             <div>
@@ -98,25 +98,13 @@ currencyPairs = currencyPairs.results;
       <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
     </svg>
   </div>
-  <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select to date">
+  <input datepicker id="endDate" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select to date">
 </div>
             </div>
-            <div>
-                <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Results are adjusted for splits</h2>
 <div class="flex items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-    <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-</div>
-            </div>            
-        </div>
-        <div>
-            <h2 class="justify-center mb-4 flex text-xl font-bold text-gray-900 dark:text-gray-100">Indicators</h2>
-            <div class="flex flex-row justify-center gap-x-10 mb-5">
-                    <IndicatorInputSMA id="sma" label="Simple Moving Average (SMA)" />
-                    <IndicatorInputEMA id="ema" label="Exponential Moving Average (EMA)" />
-                    <IndicatorInputMACD id="macd" label="Moving Average Convergence/Divergence (MACD)" />
-                    <IndicatorInputRSI id="rsi" label="Relative Strength Index (RSI)" />
-            </div>
+    <input id="splits" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="splits" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Results are adjusted for splits</label>
+</div>          
         </div>
         <div data-style="clean" class="flex flex-col mb-3 items-center">
             <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5">Upload your bot</h1>
@@ -145,7 +133,7 @@ currencyPairs = currencyPairs.results;
 		    				></path>
 		    			</svg>
                     </div>
-                    <input id="member_bot" class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="bot" aria-label="Enter your bot" placeholder="Enter your bot" type="file">
+                    <input id="fileOfBot" class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="bot" aria-label="Enter your bot" placeholder="Enter your bot" type="file">
                 </div>
                 <button id="sendButton" data-element="send" class="formkit-send min-w-max">
                     <span class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send bot</span>
@@ -158,13 +146,14 @@ currencyPairs = currencyPairs.results;
 const searchInput = document.getElementById('searchInput');
 const listItems = document.querySelectorAll('#dropdownHover ul li');
 const sendButton = document.getElementById('sendButton');
-
 const listTimeWindow = document.querySelectorAll('#dropdownTimeWindow ul li');
-const dropdownButtonTimeWindow = document.getElementById('dropdownButton');
+var dropdownButtonTimeWindow = document.getElementById('dropdownButtonTimeWindow');
+var currencySelected = document.getElementById('currencySelected');
+
 
 listTimeWindow.forEach(function(item) {
     item.addEventListener('click', function(event) {
-        const text = (event.target as HTMLElement)?.textContent || '';
+        const text = (event.target as HTMLElement)?.textContent;
         
         if (dropdownButtonTimeWindow) {
             dropdownButtonTimeWindow.textContent = text;
@@ -172,13 +161,13 @@ listTimeWindow.forEach(function(item) {
     });
 });
 
-const button = document.getElementById('dropdownHoverButton');
+
 listItems.forEach(function(item) {
     item.addEventListener('click', function(event) {
-        const text = (event.target as HTMLElement)?.textContent || '';
+        const text = (event.target as HTMLElement)?.textContent;
         
-        if (button) {
-            button.textContent = text;
+        if (currencySelected) {
+            currencySelected.textContent = text;
         }
     });
 });
@@ -199,6 +188,27 @@ if (searchInput) {
 }
 
 sendButton?.addEventListener('click', function() {
-    alert('Bot sent');
+    const fileOfBot = document.getElementById('fileOfBot');
+    const splits = document.getElementById('splits');
+    const timestampMultiplier = document.getElementById('timestampMultiplier');
+    const initDate = document.getElementById('initDate');
+    const endDate = document.getElementById('endDate');
+    currencySelected = document.getElementById('currencySelected');
+    dropdownButtonTimeWindow = document.getElementById('dropdownButtonTimeWindow');
+
+    currencySelected?.textContent === "Select currency pair" ? alert("Please select a currency pair") : null;
+    dropdownButtonTimeWindow?.textContent === "Time window" ? alert("Please select a time window") : null;
+    initDate?.textContent === "" ? alert("Please select a start date") : null;
+    endDate?.textContent === "" ? alert("Please select an end date") : null;
+    fileOfBot?.textContent === "" ? alert("Please upload your bot") : null;
+    if (timestampMultiplier?.textContent === "") {
+        alert("Please select a timestamp multiplier");
+    } else {
+        var timestamp = parseInt(timestampMultiplier?.textContent || '0');
+        if (timestamp < 0) {
+            alert("Please select a positive timestamp multiplier");
+        }
+    }
+
 });
 </script>
