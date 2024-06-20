@@ -1,8 +1,4 @@
 ---
-/* eslint max-lines: 'off' */
-
-import { asset } from '../lib/data.js';
-
 import ColorModeSwitcher from '../components/ColorModeSwitcher.astro';
 ---
 
@@ -21,11 +17,6 @@ import ColorModeSwitcher from '../components/ColorModeSwitcher.astro';
 					
 				</button>
 				<a href="/" class="flex ml-2 md:mr-24">
-					<img
-						src={asset('images/logo.svg')}
-						class="h-8 mr-3"
-						alt="FlowBite Logo"
-					/>
 					<span
 						class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
 						>TradeMate Tester</span
@@ -49,20 +40,8 @@ import ColorModeSwitcher from '../components/ColorModeSwitcher.astro';
 								>Dashboard</a
 							>
 						</li>
-						<li>
-							<a
-								href="/settings/"
-								class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-								>Settings</a>
-						</li>
 					</ul>
-					<div class="py-2">
-						<a
-							href="#"
-							class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-							>Sign out</a
-						>
-					</div> 
+
 				</div>
 				<ColorModeSwitcher />
 				<!-- Profile -->
