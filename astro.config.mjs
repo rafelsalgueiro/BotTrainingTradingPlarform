@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
+import solid from '@astrojs/solid-js';
 
 const DEV_PORT = 2121;
 
@@ -26,5 +27,7 @@ export default defineConfig({
 		//
 		sitemap(),
 		tailwind(),
+		solid(),
 	],
 });
+      
