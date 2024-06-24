@@ -33,6 +33,7 @@ import Deposit from '../components/Deposit.astro';
     const sendButton = document.getElementById('sendButton');
 
     sendButton?.addEventListener('click', function() {
+        try {
         var leverageSelected = document.getElementById('leverage');
         var deposit = document.getElementById('deposit').value;
         var fileOfBot = document.getElementById('fileOfBot').files;
@@ -42,11 +43,12 @@ import Deposit from '../components/Deposit.astro';
         var dropdownButtonTimeWindow = document.getElementById('dropdownButtonTimeWindow');
         var currencySelected = document.getElementById('currencySelected');
         var period;
+        var hasError = false;
 
-        String(currencySelected?.textContent) === "Select currency pair" ? alert("Please select a currency pair") : null;
-        String(dropdownButtonTimeWindow?.textContent) === "Time window" ? alert("Please select a time window") : null;
-        initDate === "" ? alert("Please select a start date") : null;
-        endDate === "" ? alert("Please select an end date") : null;
+        String(currencySelected?.textContent) === "Select currency pair" ? (alert("Please select a currency pair"), hasError = true) : null;
+        String(dropdownButtonTimeWindow?.textContent) === "Time window" ? (alert("Please select a time window"), hasError = true) : null;
+        initDate === "" ? (alert("Please select a start date"), hasError = true) : null;
+        endDate === "" ? (alert("Please select an end date"), hasError = true) : null;
 
         let initDateCheck = initDate.split('/');
         initDateCheck = `${initDateCheck[2]}${initDateCheck[0]}${initDateCheck[1]}`;
@@ -54,37 +56,43 @@ import Deposit from '../components/Deposit.astro';
         endDateCheck = `${endDateCheck[2]}${endDateCheck[0]}${endDateCheck[1]}`;
 
         const isInvalidDateRange = parseInt(endDateCheck) < parseInt(initDateCheck);
-        isInvalidDateRange ? alert("The end date must be greater than the start date") : null;
-        fileOfBot === "" ? alert("Please upload your bot") : null;
-        deposit === "" ? alert("Please enter a deposit") : null;
-        String(leverageSelected?.textContent) === "SelectLeverage" ? alert("Please enter a deposit") : null;
+        isInvalidDateRange ? (alert("The end date must be greater than the start date"), hasError = true) : null;
+        fileOfBot === "" ? (alert("Please upload your bot"), hasError = true) : null;
+        deposit === "" ? (alert("Please enter a deposit"), hasError = true ): null;
+        String(leverageSelected?.textContent) === "SelectLeverage" ? (alert("Please enter a deposit"), hasError = true) : null;
 
         if (timespanMultiplier === "") {
             alert("Please select a timespan multiplier");
+            hasError = true;
         } else {
             var timespan = parseInt(timespanMultiplier || '0');
             if (timespan < 0) {
                 alert("Please select a positive timespan multiplier");
+                hasError = true;
             }
             
             switch (String(dropdownButtonTimeWindow?.textContent)) {
                 case "minute":
-                    (timespan === 1 || timespan === 5 || timespan === 15 || timespan === 30 ) ? null : alert("In minute time window, timespan only can be 1, 5, 15 ");
+                    (timespan === 1 || timespan === 5 || timespan === 15 || timespan === 30 ) ? null : (alert("In minute time window, timespan only can be 1, 5, 15 "), hasError = true);
                     period = 'M';
                     break;
                 case "hour":
-                    (timespan === 1 || timespan === 4 ) ? null : alert("In hourly time window, timespan only can be 1 or 4");
+                    (timespan === 1 || timespan === 4 ) ? null : (alert("In hourly time window, timespan only can be 1 or 4"),  hasError = true);
                     period = 'H';
                     break;
                 case "day":
-                    (timespan != 1) ? alert("In daily time window, timespan only can be 1") : null;
+                    (timespan != 1) ? (alert("In daily time window, timespan only can be 1"), hasError = true) : null;
                     period = 'D';
                     break;
                 case "week":
-                    (timespan != 1) ? alert("In weekly time window, timespan only can be 1") : null;
+                    (timespan != 1) ? (alert("In weekly time window, timespan only can be 1"), hasError = true) : null;
                     period = 'W';
                     break;
             }
+        }
+        }
+        catch ({error}) {
+            console.log(error);
         }
         var period = period + timespanMultiplier;
         
@@ -104,20 +112,24 @@ import Deposit from '../components/Deposit.astro';
                 mqhFiles.push(fileOfBot[i]);
             }
         }
-        
-        // Create a FormData object to handle file uploads
         let formData = new FormData();
         
-        // Append ex5 files to FormData
         for (let i = 0; i < ex5Files.length; i++) {
             formData.append('ex5_files', ex5Files[i]);
         }
         
-        // Append mqh files to FormData
         for (let i = 0; i < mqhFiles.length; i++) {
             formData.append('mqh_files', mqhFiles[i]);
         }
-                // Construir objeto JSON con los parámetros
+
+        function uploadFiles() {
+            return axios.post('http://127.0.0.1:5000/files', formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data'
+            }
+            });
+        }
+
         var parameters = {
             filename: ex5Files[0].name,
             symbol: currencySelected?.textContent,
@@ -128,16 +140,7 @@ import Deposit from '../components/Deposit.astro';
             leverage: leverageSelected?.textContent
         };
 
-        //var body_parametres = JSON.stringify(parameters);
-        function uploadFiles() {
-            return axios.post('http://127.0.0.1:5000/files', formData, {
-            headers: {
-            'Content-Type': 'multipart/form-data'
-            }
-            });
-        }
-
-        // Function to upload parameters
+    
         function uploadParameters() {
             return axios.post('http://127.0.0.1:5000/parameters', parameters, {
                 headers: {
@@ -146,7 +149,6 @@ import Deposit from '../components/Deposit.astro';
             });
         }
 
-        // Handle the upload sequence
         uploadFiles()
             .then(response => {
                 console.log('Files uploaded successfully:', response.data);
