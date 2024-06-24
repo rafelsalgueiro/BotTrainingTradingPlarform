@@ -42,6 +42,7 @@
 		"@faker-js/faker": "^7.6.0",
 		"apexcharts": "^3.37.2",
 		"astro": "^2.10.15",
+		"axios": "^1.7.2",
 		"browserslist": "^4.23.0",
 		"caniuse-lite": "^1.0.30001616",
 		"dotenv": "^16.4.5",

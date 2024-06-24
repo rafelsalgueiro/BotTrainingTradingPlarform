@@ -1,204 +1,64 @@
+---
+import LoadBots from '../components/LoadBots.astro';
+import DropDownTimeWindow from '../components/DropDownTimeWindow.astro';
+import TimeSpanMultiplier from '../components/TimeSpanMultiplier.astro';
+import AggregateTimeWindowIni from '../components/AggregateTimeWindowIni.astro';
+import AggregateTimeWindowEnd from '../components/AggregateTimeWindowEnd.astro';
+import CurrencyPair from '../components/CurrencyPair.astro';
+import Leverage from '../components/Leverage.astro';
+import Deposit from '../components/Deposit.astro';
+---    
+
     <div class="px-4 pt-6 items-center justify-between mb-4">
             <h1 class="flex justify-center text-4xl text-gray-900 dark:text-gray-100 font-bold mb-8">Add new bot</h1>
-                <div class="flex flex-col items-center justify-center mb-7">
-                    <h2 class="text-2xl font-bold pb-2 text-gray-900 dark:text-gray-100 ">Currency pair</h2>
-                    <button id="currencySelected" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Select currency pair <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                        </svg>
-                    </button>
-                    
-                    <div id="dropdownHover" class="z-10 hidden bg-white divide-y scrollbar-thin divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 max-h-80 overflow-y-auto">
-                        <input type="text" id="searchInput" class="block w-full px-4 py-2 border-b border-gray-200 focus:outline-none focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:focus:border-blue-400" placeholder="Search..." />
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="currencySelected">
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">EURUSD</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">GBPUSD</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USDCHF</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USDJPY</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USDCNH</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USDRUB</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">AUDUSD</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">NZDUSD</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USDCAD</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USDSEK</p>
-                            </li>
-                            <li>
-                                <p class="flex justify-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">EURAUD</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <CurrencyPair/>
             <div class="flex flex-row justify-center gap-x-10 mb-7">
-                <div>
-                    <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Size of the time window</h2>
-                    
-                    <button id="dropdownButtonTimeWindow" data-dropdown-toggle="dropdownTimeWindow" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items" type="button">Time window <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                    </svg>
-                    </button>
+                <Leverage/>
+                <Deposit/>
+            </div>
+            <div class="flex flex-row justify-center gap-x-10 mb-7">
+                <DropDownTimeWindow/>
+                <TimeSpanMultiplier/>
+                <AggregateTimeWindowIni/>
+                <AggregateTimeWindowEnd/>        
+            </div>
+            <LoadBots />
+    </div>
 
-                    <div id="dropdownTimeWindow" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                        <li>
-                            <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">minute</a>
-                        </li>
-                        <li>
-                            <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">hour</a>
-                        </li>
-                        <li>
-                            <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">day</a>
-                        </li>
-                        <li>
-                            <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">week</a>
-                        </li>
-                        </ul>
-                    </div>
-                </div>
-                <div>
-                    <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Size of timespan multiplier</h2>
-                    <input type="number" id="timespanMultiplier" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="90210" required />
-                </div>
-                <div>
-                    <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">Start of the aggregate time window</h2>
-                    
-                    <div class="relative max-w-sm">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                        </svg>
-                    </div>
-                    <input datepicker id="initDate" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select from date">
-                    </div>
-                </div>
-                <div>
-                    <h2 class="text-l mb-2 font-bold text-gray-900 dark:text-gray-100">End of the aggregate time window</h2>
-                    <div class="relative max-w-sm">
-    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-        </svg>
-    </div>
-    <input datepicker id="endDate" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select to date">
-    </div>
-                </div>         
-            </div>
-            <div data-style="clean" class="flex flex-col mb-3 items-center">
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5">Upload your bot</h1>
-                <div data-element="fields" data-stacked="false" class="flex items-center w-full max-w-lg mb-3 seva-fields formkit-fields selection">
-                    <div class="relative w-full mr-3 formkit-field">
-                        <label for="member_bot" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Upload your bot</label>
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                            <svg
-                                fill="currentColor"
-                                class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                viewBox="0 0 90 90"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                            >
-                                <path 
-                                d="M20,60 C20,51.7157288 26.7081139,45 35.0050808,45 L64.9949192,45 C73.2819965,45 80,51.7139073 80,60 C80,68.2842712 73.2918861,75 64.9949192,75 L35.0050808,75 C26.7180035,75 20,68.2860927 20,60 Z M35,66 C31.6862915,66 29,63.3137085 29,60 C29,56.6862915 31.6862915,54 35,54 C38.3137085,54 41,56.6862915 41,60 C41,63.3137085 38.3137085,66 35,66 Z M65,66 C61.6862915,66 59,63.3137085 59,60 C59,56.6862915 61.6862915,54 65,54 C68.3137085,54 71,56.6862915 71,60 C71,63.3137085 68.3137085,66 65,66 Z"
-                                ></path>
-                                <path 
-                                d="M65,62 L65,62 C66.1045695,62 67,61.1045695 67,60 C67,58.8954305 66.1045695,58 65,58 C63.8954305,58 63,58.8954305 63,60 C63,61.1045695 63.8954305,62 65,62 L65,62 Z"
-                                ></path>
-                                <path 
-                                d="M35,62 L35,62 C36.1045695,62 37,61.1045695 37,60 C37,58.8954305 36.1045695,58 35,58 C33.8954305,58 33,58.8954305 33,60 C33,61.1045695 33.8954305,62 35,62 L35,62 Z"
-                                ></path>
-                                <path 
-                                d="M50,20 C71.4336483,20 81.3822646,28.613774 86.0000023,36.6100918 L86,11.9417476 L86,10 L90,10 L90,11.9417476 L90,58.0582524 L90,59.0291262 L90,70 C90,70 90,90 50,90 C10,90 10,70 10,70 L10,59.0291262 L10,58.0582524 L10,11.9417476 L10,10 L14,10 L14,11.9417476 L14,36.6100878 C18.6177354,28.613774 28.5663517,20 50,20 Z M14,50 L14,70 C14,69.9724452 14.0069729,70.0770394 14.037923,70.2936896 C14.1025381,70.7459952 14.2244193,71.2741473 14.4197332,71.8600889 C15.0099728,73.6308077 16.093439,75.4365847 17.8284271,77.1715729 C23.24535,82.5884957 33.4798628,86 50,86 C66.5201372,86 76.75465,82.5884957 82.1715729,77.1715729 C83.906561,75.4365847 84.9900272,73.6308077 85.5802668,71.8600889 C85.7755807,71.2741473 85.8974619,70.7459952 85.962077,70.2936896 C85.9930271,70.0770394 86,69.9724452 86,70 L86,50 C86,49.8884469 85.9860708,49.5750394 85.9398931,49.0901739 C85.8573922,48.2239138 85.706612,47.2438431 85.4702518,46.1802218 C84.7903506,43.1206666 83.5663124,40.0605712 81.6717988,37.2188008 C76.1879285,28.9929953 66.2019379,24 50,24 C33.7980621,24 23.8120715,28.9929953 18.3282012,37.2188008 C16.4336876,40.0605712 15.2096494,43.1206666 14.5297482,46.1802218 C14.293388,47.2438431 14.1426078,48.2239138 14.0601069,49.0901739 C14.0161083,49.5521587 14,50 14,50 Z M14,10 C14,8.8954305 13.1045695,8 12,8 C10.8954305,8 10,8.8954305 10,10 L14,10 Z M90,10 C90,8.8954305 89.1045695,8 88,8 C86.8954305,8 86,8.8954305 86,10 L90,10 Z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <input id="fileOfBot" class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="bot" aria-label="Enter your bot" placeholder="Enter your bot" type="file" multiple>
-                    </div>
-                    <button id="sendButton" data-element="send" class="formkit-send min-w-max">
-                        <span class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send bot</span>
-                    </button>
-                </div>
-            </div>
-    </div>
 
     <script>
-    const searchInput = document.getElementById('searchInput');
-    const listItems = document.querySelectorAll('#dropdownHover ul li');
+    import { onMount } from 'solid-js';
+    import io from 'socket.io-client';
+    import axios from 'axios';
     const sendButton = document.getElementById('sendButton');
-    const listTimeWindow = document.querySelectorAll('#dropdownTimeWindow ul li');
-    var dropdownButtonTimeWindow = document.getElementById('dropdownButtonTimeWindow');
-    var currencySelected = document.getElementById('currencySelected');
-
-
-    listTimeWindow.forEach(function(item) {
-        item.addEventListener('click', function(event) {
-            const text = (event.target as HTMLElement)?.textContent;
-            
-            if (dropdownButtonTimeWindow) {
-                dropdownButtonTimeWindow.textContent = text;
-            }
-        });
-    });
-
-
-    listItems.forEach(function(item) {
-        item.addEventListener('click', function(event) {
-            const text = (event.target as HTMLElement)?.textContent;
-            
-            if (currencySelected) {
-                currencySelected.textContent = text;
-            }
-        });
-    });
-
-    if (searchInput) {
-        searchInput.addEventListener('input', function(event) {
-            const searchText = (event.target as HTMLInputElement)?.value?.toLowerCase() || '';
-            listItems.forEach(function(item) {
-                const text = item.textContent?.toLowerCase() || '';
-                const itemElement = item as HTMLElement;
-                if (text.includes(searchText)) {
-                    itemElement.style.display = 'block';
-                } else {
-                    itemElement.style.display = 'none';
-                }
-            });
-        });
-    }
 
     sendButton?.addEventListener('click', function() {
-        var fileOfBot = document.getElementById('fileOfBot').value;
+        var leverageSelected = document.getElementById('leverage');
+        var deposit = document.getElementById('deposit').value;
+        var fileOfBot = document.getElementById('fileOfBot').files;
         var timespanMultiplier = document.getElementById('timespanMultiplier').value;
         var initDate = document.getElementById('initDate').value;
         var endDate = document.getElementById('endDate').value;
-        dropdownButtonTimeWindow = document.getElementById('dropdownButtonTimeWindow');
-        currencySelected = document.getElementById('currencySelected');
-        console.log("endDate: ", endDate);
-        console.log("initDate: ", initDate);
-        console.log("timespanMultiplier: ", timespanMultiplier);
-        console.log("fileOfBot: ", fileOfBot);
-        console.log("dropdownButtonTimeWindow: ", dropdownButtonTimeWindow?.textContent);
+        var dropdownButtonTimeWindow = document.getElementById('dropdownButtonTimeWindow');
+        var currencySelected = document.getElementById('currencySelected');
+        var period;
+
         String(currencySelected?.textContent) === "Select currency pair" ? alert("Please select a currency pair") : null;
         String(dropdownButtonTimeWindow?.textContent) === "Time window" ? alert("Please select a time window") : null;
         initDate === "" ? alert("Please select a start date") : null;
         endDate === "" ? alert("Please select an end date") : null;
-        endDate < initDate ? alert("The end date must be greater than the start date") : null;
+
+        let initDateCheck = initDate.split('/');
+        initDateCheck = `${initDateCheck[2]}${initDateCheck[0]}${initDateCheck[1]}`;
+        let endDateCheck = endDate.split('/');
+        endDateCheck = `${endDateCheck[2]}${endDateCheck[0]}${endDateCheck[1]}`;
+
+        const isInvalidDateRange = parseInt(endDateCheck) < parseInt(initDateCheck);
+        isInvalidDateRange ? alert("The end date must be greater than the start date") : null;
         fileOfBot === "" ? alert("Please upload your bot") : null;
+        deposit === "" ? alert("Please enter a deposit") : null;
+        String(leverageSelected?.textContent) === "SelectLeverage" ? alert("Please enter a deposit") : null;
+
         if (timespanMultiplier === "") {
             alert("Please select a timespan multiplier");
         } else {
@@ -206,27 +66,99 @@
             if (timespan < 0) {
                 alert("Please select a positive timespan multiplier");
             }
+            
             switch (String(dropdownButtonTimeWindow?.textContent)) {
                 case "minute":
                     (timespan === 1 || timespan === 5 || timespan === 15 || timespan === 30 ) ? null : alert("In minute time window, timespan only can be 1, 5, 15 ");
-
+                    period = 'M';
                     break;
                 case "hour":
                     (timespan === 1 || timespan === 4 ) ? null : alert("In hourly time window, timespan only can be 1 or 4");
+                    period = 'H';
                     break;
                 case "day":
                     (timespan != 1) ? alert("In daily time window, timespan only can be 1") : null;
+                    period = 'D';
                     break;
                 case "week":
                     (timespan != 1) ? alert("In weekly time window, timespan only can be 1") : null;
+                    period = 'W';
                     break;
             }
         }
+        var period = period + timespanMultiplier;
+        
+        let initDateParts = initDate.split('/');
+        initDate = `${initDateParts[2]}.${initDateParts[0]}.${initDateParts[1]}`;
 
+        let endDateParts = endDate.split('/');
+        endDate = `${endDateParts[2]}.${endDateParts[0]}.${endDateParts[1]}`;
+
+        let ex5Files = [];
+        let mqhFiles = [];
+            
+        for (let i = 0; i < fileOfBot.length; i++) {
+            if (fileOfBot[i].name.endsWith('.ex5')) {
+                ex5Files.push(fileOfBot[i]);
+            } else if (fileOfBot[i].name.endsWith('.mqh')) {
+                mqhFiles.push(fileOfBot[i]);
+            }
+        }
+        
+        // Create a FormData object to handle file uploads
+        let formData = new FormData();
+        
+        // Append ex5 files to FormData
+        for (let i = 0; i < ex5Files.length; i++) {
+            formData.append('ex5_files', ex5Files[i]);
+        }
+        
+        // Append mqh files to FormData
+        for (let i = 0; i < mqhFiles.length; i++) {
+            formData.append('mqh_files', mqhFiles[i]);
+        }
+                // Construir objeto JSON con los parámetros
+        var parameters = {
+            filename: ex5Files[0].name,
+            symbol: currencySelected?.textContent,
+            period: period,
+            from_date: initDate,
+            to_date: endDate,
+            deposit: deposit,
+            leverage: leverageSelected?.textContent
+        };
+
+        //var body_parametres = JSON.stringify(parameters);
+        function uploadFiles() {
+            return axios.post('http://127.0.0.1:5000/files', formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data'
+            }
+            });
+        }
+
+        // Function to upload parameters
+        function uploadParameters() {
+            return axios.post('http://127.0.0.1:5000/parameters', parameters, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+
+        // Handle the upload sequence
+        uploadFiles()
+            .then(response => {
+                console.log('Files uploaded successfully:', response.data);
+                return uploadParameters();
+            })
+            .then(response => {
+                console.log('Parameters uploaded successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
-
-     import { onMount } from 'solid-js';
-    import io from 'socket.io-client';
 
     onMount(() => {
         const socket = io('http://127.0.0.1:5000/');
@@ -237,7 +169,10 @@
         
         socket.on('results', data => {
             console.log('Results:', data);
-            window.location.href = '/dashboard';
+            
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 800);
         });
         
     });
